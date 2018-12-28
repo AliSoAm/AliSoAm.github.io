@@ -1,19 +1,29 @@
-addons:
-  apt:
-    packages:
-      - python-pygments
+sudo: required
+language: generic
+services:
+  - docker
+stages:
+  - name: test
+    if: branch ~= master
+  - name: deploy
+    if: branch = hugo
 
-script:
-  - mkdir public
-  - chmod 770 ./binaries/hugo
-  - ./binaries/hugo
-  - cp google4a768c937c82c1de.html public
-
-deploy:
-  provider: pages
-  target-branch: master
-  skip_cleanup: true
-  local_dir: public
-  github_token: $GITHUB_TOKEN
-  on:
-    branch: hugo
+jobs:
+  include:
+    - stage: test
+      script:
+      - mkdir public
+      - docker run --rm -v $(pwd):/hugo registry.gitlab.com/pages/hugo:latest /bin/sh -c "cd /hugo; hugo"
+    - stage: deploy
+      script:
+        - mkdir public
+        - docker run --rm -v $(pwd):/hugo registry.gitlab.com/pages/hugo:latest /bin/sh -c "cd /hugo; hugo"
+        - cp google4a768c937c82c1de.html public
+      deploy:
+        provider: pages
+        target-branch: master
+        skip_cleanup: true
+        local_dir: public
+        github_token: $GITHUB_TOKEN
+        on:
+          branch: hugo
