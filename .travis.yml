@@ -2,6 +2,7 @@ sudo: required
 language: generic
 services:
   - docker
+
 stages:
   - name: test
     if: branch ~= master
@@ -12,13 +13,12 @@ jobs:
   include:
     - stage: test
       script:
-      - mkdir public
-      - docker run --rm -v $(pwd):/hugo registry.gitlab.com/pages/hugo:latest /bin/sh -c "cd /hugo; hugo"
+        - mkdir public
+        - docker run --rm -v $(pwd):/hugo registry.gitlab.com/pages/hugo:latest /bin/sh -c "cd /hugo; hugo"
     - stage: deploy
       script:
         - mkdir public
         - docker run --rm -v $(pwd):/hugo registry.gitlab.com/pages/hugo:latest /bin/sh -c "cd /hugo; hugo"
-        - cp google4a768c937c82c1de.html public
       deploy:
         provider: pages
         target-branch: master
