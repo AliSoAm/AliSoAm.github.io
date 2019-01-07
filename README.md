@@ -5,5 +5,5 @@ Available at: [https://alisoam.github.io](https://alisoam.github.io)
 
 To test it locally run:
 ```
-docker run --rm -p 1313:1313 -v $(pwd):/hugo registry.gitlab.com/pages/hugo:latest /bin/sh -c "cd /hugo; hugo server"
+docker run --rm --network=host -v $(pwd):/hugo registry.gitlab.com/pages/hugo:latest /bin/sh -c "cd /hugo; hugo server"
 ```
