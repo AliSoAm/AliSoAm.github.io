@@ -1,0 +1,29 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+stages:
+  - name: test
+    if: branch ~= master
+  - name: deploy
+    if: branch = hugo
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - mkdir public
+        - docker run --rm -v $(pwd):/hugo registry.gitlab.com/pages/hugo:latest /bin/sh -c "cd /hugo; hugo"
+    - stage: deploy
+      script:
+        - mkdir public
+        - docker run --rm -v $(pwd):/hugo registry.gitlab.com/pages/hugo:latest /bin/sh -c "cd /hugo; hugo"
+      deploy:
+        provider: pages
+        target-branch: master
+        skip_cleanup: true
+        local_dir: public
+        github_token: $GITHUB_TOKEN
+        on:
+          branch: hugo

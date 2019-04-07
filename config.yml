@@ -1,0 +1,13 @@
+DefaultContentLanguage: en
+languages:
+  en:
+    languageName: English
+    weight: 1
+    name: Ali Sorour Amini
+  fa:
+    languageName: Farsi
+    rtl: true
+    weight: 2
+    name: علی سرورامینی
+params:
+  linkedin: https://linkedin.com/fr/whoever
