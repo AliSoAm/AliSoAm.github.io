@@ -1,0 +1,24 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        {{ range .Site.Params.Home }}
+        <li id="home" class="nav-item active-nav">
+          <a href="#{{ .name }}" data-value="home-cont">
+            <i class="fas fa-{{ .icon }}"></i>
+            <span class="name-menu"> {{ .name }}</span>
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+    <div class="social-media">
+      {{ range .Site.Params.Social }}
+      <a href="{{ .link | safeURL }}" data-toggle="tooltip" title="{{ .name }}" class="icon fa-{{ .icon }}"></a>
+      {{ end }}
+    </div>
+    <div class="collapse-menu">
+      <span class="collapse-icon closed-menu"></span>
+    </div>
+  </div>
+</nav>

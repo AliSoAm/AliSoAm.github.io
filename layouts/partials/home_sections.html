@@ -1,0 +1,5 @@
+{{ range .Site.Params.Home }}
+<section id="{{ .name }}" style="display: none;">
+  {{ printf "/home/english/%s.md" .name | readFile | markdownify }}
+</section>
+{{ end }}

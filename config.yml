@@ -1,13 +1,38 @@
 DefaultContentLanguage: en
-languages:
+Languages:
   en:
     languageName: English
     weight: 1
     name: Ali Sorour Amini
+    Params:
+      Home:
+        - name: "About"
+          icon: "user"
+        - name: "Publications"
+          icon: book
+        - name: "Skills"
+          icon: "cogs"
+        - name: "Projects"
+          icon: "hammer"
+        - name: "Educations"
+          icon: "user-graduate"
+        - name: "Contact"
+          icon: "address-card"
   fa:
     languageName: Farsi
     rtl: true
     weight: 2
     name: علی سرورامینی
-params:
-  linkedin: https://linkedin.com/fr/whoever
+    Params:
+      Home:
+Params:
+  Social:
+    - name: "LinkedIn"
+      icon: "linkedin"
+      link: "https://www.linkedin.com/in/AliSoAm"
+    - name: "Github"
+      icon: "github"
+      link: "https://github.com/AliSoAm"
+    - name: "Telegram"
+      icon: "telegram"
+      link: "https://t.me/AliSoAm"
